@@ -2,3 +2,6 @@ theme: jekyll-theme-slate
 
 title: NetTools
 description: The networking toolkit for Python 3
+
+github:
+  zip_url: https://github.com/hkamran80/nettools/archive/master.zip
