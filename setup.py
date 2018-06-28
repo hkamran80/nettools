@@ -7,7 +7,7 @@ setup(name='nettools',
       author='H. Kamran',
       author_email='hkamran@unisontech.org',
       license='GPLv3+',
-      packages=['nettools'],,
+      packages=['nettools'],
       install_requires=[
           'ipwhois', 'dnspython3',
       ],
