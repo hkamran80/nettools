@@ -1,10 +1,10 @@
 # NetTools for Python
 
-from warnings import filterwarnings
+#from warnings import filterwarnings
 import subprocess
-import ipwhois
+#import ipwhois
 
-filterwarnings(action="ignore")
+#filterwarnings(action="ignore")
 
 def get_base_ip():
 	ipconfig = subprocess.Popen("ifconfig en0".split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
@@ -19,12 +19,12 @@ def nslookup(ip):
 	try:
 		cmd = subprocess.Popen(["nslookup", ip], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0].decode("utf-8").replace("\t", "").split("\n")
 
-		try:
-			whois_data = ipwhois.IPWhois(ip).lookup_whois()["nets"][0]["name"]
-		except ipwhois.exceptions.WhoisLookupError:
-			whois_data = "unavailable"
+		#try:
+		#	whois_data = ipwhois.IPWhois(ip).lookup_whois()["nets"][0]["name"]
+		#except ipwhois.exceptions.WhoisLookupError:
+		#	whois_data = "unavailable"
 
-		return {"ip":clean_ip(cmd[4].split(" = ")[0].split(".")[:-2]), "hostname":cmd[4].split(" = ")[1][:-1], "owner":whois_data}
+		return {"ip":clean_ip(cmd[4].split(" = ")[0].split(".")[:-2]), "hostname":cmd[4].split(" = ")[1][:-1]}#, "owner":whois_data}
 	except IndexError:
 		return subprocess.Popen(["nslookup", ip], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0].decode("utf-8").replace("\t", "").split("\n")[-3]
 		#return subprocess.Popen(["nslookup", ip], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[1].decode("utf-8")
